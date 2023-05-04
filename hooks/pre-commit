@@ -1,0 +1,6 @@
+#!/bin/sh
+
+where gitversion || exit 0
+
+gitversion -output json -showvariable FullSemVer > godot/version.txt
+git add godot/version.txt
