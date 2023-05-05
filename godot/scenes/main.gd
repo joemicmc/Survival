@@ -1,20 +1,24 @@
 class_name Main
-extends MultiplayerSpawner
+extends Node
 
 const PORT := 4433
 const ADDRESS := "192.168.1.200"
 
+@onready var ui: Control = %UI
 @onready var host: Button = %Host
 @onready var connect: Button = %Connect
+@onready var multiplayer_spawner: MultiplayerSpawner = %MultiplayerSpawner
 
 func _ready() -> void:
 	host.pressed.connect(
 		func():
-			set_peer(true))
+			set_peer(true)
+			ui.hide())
 	
 	connect.pressed.connect(
 		func():
-			set_peer(false))
+			set_peer(false)
+			ui.hide())
 	
 	multiplayer.peer_connected.connect(
 		func(id: int):
@@ -42,9 +46,9 @@ func set_peer(is_server: bool) -> void:
 func add_player(id: int) -> void:
 	var player = Player.instance()
 	player.name = str(id)
-	add_child(player, true)
+	multiplayer_spawner.add_child(player, true)
 
 func remove_player(id: int) -> void:
-	if not has_node(str(id)):
+	if not multiplayer_spawner.has_node(str(id)):
 		return
-	get_node(str(id)).queue_free()
+	multiplayer_spawner.get_node(str(id)).queue_free()

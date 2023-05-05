@@ -2,33 +2,37 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6cepg"]
 
-[node name="Main" type="MultiplayerSpawner"]
-_spawnable_scenes = PackedStringArray("res://entity/player.tscn")
-spawn_path = NodePath(".")
-spawn_limit = 1
+[node name="Main" type="Node"]
 script = ExtResource("1_6cepg")
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Options" type="HBoxContainer" parent="Control"]
+[node name="Options" type="HBoxContainer" parent="UI"]
 layout_mode = 2
 offset_right = 312.0
 offset_bottom = 40.0
 
-[node name="Multiplayer" type="Label" parent="Control/Options"]
+[node name="Multiplayer" type="Label" parent="UI/Options"]
 layout_mode = 2
 text = "Multiplayer:"
 
-[node name="Host" type="Button" parent="Control/Options"]
+[node name="Host" type="Button" parent="UI/Options"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Host"
 
-[node name="Connect" type="Button" parent="Control/Options"]
+[node name="Connect" type="Button" parent="UI/Options"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Connect"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("res://entity/player.tscn")
+spawn_path = NodePath(".")
+spawn_limit = 1
