@@ -12,9 +12,10 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 func _ready() -> void:
+	sprite.hide()
 	if is_multiplayer_authority():
-		sprite.modulate = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
-	sprite.show()
+		sprite.modulate = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
+		sprite.show()
 
 func _process(delta: float) -> void:
 	if is_multiplayer_authority():
