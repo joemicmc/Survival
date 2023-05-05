@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://csuqnjmogevs5"]
+[gd_scene load_steps=7 format=3 uid="uid://csuqnjmogevs5"]
 
 [ext_resource type="Script" path="res://entity/player.gd" id="1_38uwd"]
-[ext_resource type="Script" path="res://entity/player_controller.gd" id="2_l86n1"]
 [ext_resource type="Texture2D" uid="uid://bol3njkjydtce" path="res://icon.svg" id="2_lv7je"]
+[ext_resource type="Script" path="res://entity/server_sync.gd" id="2_t1q7h"]
+[ext_resource type="Script" path="res://entity/local_sync.gd" id="3_0ukek"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yrppb"]
-properties/0/path = NodePath("PlayerController/Sprite2D:position")
+properties/0/path = NodePath(".:colour")
 properties/0/spawn = true
 properties/0/sync = false
-properties/1/path = NodePath("PlayerController/Sprite2D:modulate")
+properties/1/path = NodePath("Sprite2D:position")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/sync = false
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hqunn"]
 properties/0/path = NodePath(".:target_pos")
@@ -20,16 +21,15 @@ properties/0/sync = true
 [node name="Player" type="Node"]
 script = ExtResource("1_38uwd")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="ServerSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_yrppb")
+script = ExtResource("2_t1q7h")
 
-[node name="PlayerController" type="Node" parent="."]
-script = ExtResource("2_l86n1")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="PlayerController"]
+[node name="LocalSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hqunn")
+script = ExtResource("3_0ukek")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerController"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(600, 400)
 texture = ExtResource("2_lv7je")

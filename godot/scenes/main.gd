@@ -46,8 +46,8 @@ func set_peer(is_server: bool) -> void:
 func add_player(id: int) -> void:
 	var player = Player.instance()
 	player.name = str(id)
+	player.colour = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
 	multiplayer_spawner.add_child(player, true)
-	player.sprite.modulate = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
 
 func remove_player(id: int) -> void:
 	if not multiplayer_spawner.has_node(str(id)):
