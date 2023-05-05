@@ -10,11 +10,14 @@ static func instance() -> Player:
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
-	print(get_multiplayer_authority())
+
+func _ready() -> void:
+	if is_multiplayer_authority():
+		sprite.modulate = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	sprite.show()
 
 func _process(delta: float) -> void:
 	if is_multiplayer_authority():
 		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		if direction:
-			print(get_multiplayer_authority(),": ",direction)
 			sprite.position += direction * SPEED * delta
