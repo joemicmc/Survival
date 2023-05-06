@@ -12,13 +12,11 @@ const ADDRESS := "192.168.1.200"
 func _ready() -> void:
 	host.pressed.connect(
 		func():
-			set_peer(true)
-			ui.hide())
+			set_peer(true))
 	
 	connect.pressed.connect(
 		func():
-			set_peer(false)
-			ui.hide())
+			set_peer(false))
 	
 	multiplayer.peer_connected.connect(
 		func(id: int):
@@ -30,6 +28,9 @@ func _ready() -> void:
 			if (multiplayer.is_server()):
 				remove_player(id))
 	
+	multiplayer.server_disconnected.connect(
+		func():
+			ui.show())
 
 func set_peer(is_server: bool) -> void:
 	var peer = ENetMultiplayerPeer.new()
@@ -38,16 +39,15 @@ func set_peer(is_server: bool) -> void:
 	else:
 		peer.create_client(ADDRESS, PORT)
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
+		OS.alert("Disconnected")
 		return
 	multiplayer.multiplayer_peer = peer
 	if is_server:
 		add_player(1)
+	ui.hide()
 
 func add_player(id: int) -> void:
-	var player = Player.instance()
-	player.name = str(id)
-	player.colour = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
-	multiplayer_spawner.add_child(player, true)
+	multiplayer_spawner.add_child(Player.instance(id), true)
 
 func remove_player(id: int) -> void:
 	if not multiplayer_spawner.has_node(str(id)):
