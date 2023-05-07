@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfxwax2ouvjxx"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://entity/player.gd" id="1_ccgdw"]
+[ext_resource type="Script" path="res://entity/player/player.gd" id="1_ccgdw"]
 [ext_resource type="Texture2D" uid="uid://bol3njkjydtce" path="res://icon.svg" id="2_lv7je"]
 [ext_resource type="Script" path="res://entity/server_sync.gd" id="2_t1q7h"]
 

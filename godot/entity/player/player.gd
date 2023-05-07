@@ -1,6 +1,7 @@
 class_name Player
 extends MultiplayerNode
 
+const PATH = "res://entity/player/player.tscn"
 const SPEED := 10.0
 
 @export var target_pos := Vector2.ZERO
@@ -11,7 +12,7 @@ const SPEED := 10.0
 @onready var label: Label = %Label
 
 static func instance(id: int) -> Player:
-	var player = preload("res://entity/player.tscn").instantiate()
+	var player = preload(PATH).instantiate()
 	player.name = str(id)
 	player.colour = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
 	return player

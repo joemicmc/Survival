@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Survival"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://view/menu/menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MultiplayerService="*res://multiplayer/multiplayer_service.gd"
+GameService="*res://game/game_service.gd"
+ViewService="*res://view/view_service.gd"
 
 [display]
 
