@@ -23,3 +23,5 @@ func _ready() -> void:
 	exit.pressed.connect(
 		func():
 			GameService.quit())
+	
+	host.grab_focus()
