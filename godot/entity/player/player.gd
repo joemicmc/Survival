@@ -21,7 +21,7 @@ func _enter_tree() -> void:
 	set_auth(name.to_int())
 
 func _ready() -> void:
-	sprite.modulate = colour
+	sprite.self_modulate = colour
 	target_pos = sprite.position
 	if is_auth():
 		camera.make_current()
