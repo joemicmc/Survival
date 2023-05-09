@@ -32,5 +32,6 @@ func try_create_peer(is_server: bool = false) -> bool:
 		return false
 	multiplayer.multiplayer_peer = peer
 	if is_server:
+		spawner.add_map()
 		spawner.add_player(1)
 	return true
