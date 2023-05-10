@@ -1,0 +1,2 @@
+class_name InputPressed
+extends CustomInputEvent

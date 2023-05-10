@@ -11,6 +11,8 @@ const SPEED := 10.0
 @onready var camera: Camera2D = %Camera2D
 @onready var label: Label = %Label
 
+var direction := Vector2.ZERO
+
 static func instance(id: int) -> Player:
 	var player = preload(PATH).instantiate()
 	player.name = str(id)
@@ -18,18 +20,30 @@ static func instance(id: int) -> Player:
 	return player
 
 func _enter_tree() -> void:
+	super._enter_tree()
+	
 	set_auth(name.to_int())
 
 func _ready() -> void:
+	super._ready()
+	
+	get_signal(ControllerMoveChanged).connect(
+		func(x: ControllerMoveChanged):
+			direction = x.strength)
+	
 	sprite.self_modulate = colour
 	target_pos = sprite.position
+	
 	if is_auth():
 		camera.make_current()
 		label.text = name
 
 func _process(delta: float) -> void:
+	super._process(delta)
+	
 	if is_auth():
-		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		if direction:
 			target_pos += direction * SPEED
+	
 	sprite.position = sprite.position.lerp(target_pos, 0.75 * delta)
+	direction = Vector2.ZERO
