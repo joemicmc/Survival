@@ -1,28 +1,33 @@
 class_name Player
 extends MultiplayerNode
 
-const PATH = "res://entity/player/player.tscn"
+const PACKED_SCENE = preload("res://entity/player/player.tscn")
 const SPEED := 10.0
 
 @export var target_pos := Vector2.ZERO
 @export var colour: Color
 
+var direction := Vector2.ZERO
+
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var camera: Camera2D = %Camera2D
 @onready var label: Label = %Label
 
-var direction := Vector2.ZERO
 
 static func instance(id: int) -> Player:
-	var player = preload(PATH).instantiate()
+	var player = PACKED_SCENE.instantiate()
 	player.name = str(id)
-	player.colour = Color(randf_range(0.25, 1), randf_range(0.25, 1), randf_range(0.25, 1))
+	player.colour = Color(
+		randf_range(0.25, 1),
+		randf_range(0.25, 1),
+		randf_range(0.25, 1))
 	return player
+
 
 func _enter_tree() -> void:
 	super._enter_tree()
-	
 	set_auth(name.to_int())
+
 
 func _ready() -> void:
 	super._ready()
@@ -37,6 +42,7 @@ func _ready() -> void:
 	if is_auth():
 		camera.make_current()
 		label.text = name
+
 
 func _process(delta: float) -> void:
 	super._process(delta)

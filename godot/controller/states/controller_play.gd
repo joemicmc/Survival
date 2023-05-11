@@ -1,6 +1,7 @@
 class_name ControllerPlay
 extends ControllerState
 
+
 func enter() -> void:
 	super.enter()
 	
@@ -9,4 +10,4 @@ func enter() -> void:
 			match x.action:
 				InputActions.LEFT_STICK:
 					emit(ControllerMoveChanged.new(x.strength))
-			pass)
+			)

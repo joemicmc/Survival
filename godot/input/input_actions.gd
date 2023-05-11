@@ -37,13 +37,16 @@ const BUTTONS: Array[String] = [
 	TOP_ACTION,
 	BOTTOM_ACTION,
 	START,
-	BACK]
+	BACK,
+]
 
 const VECTORS: Array[String] = [
 	LEFT_STICK,
-	RIGHT_STICK]
+	RIGHT_STICK,
+]
 
 const UI: Dictionary = {
 	DPAD_UP: UI_UP,
 	DPAD_DOWN: UI_DOWN,
-	BOTTOM_ACTION: UI_ACCEPT}
+	BOTTOM_ACTION: UI_ACCEPT,
+}

@@ -1,7 +1,8 @@
 class_name Map
 extends MultiplayerNode
 
-const PATH = "res://entity/map/map.tscn"
+const PACKED_SCENE: PackedScene = preload("res://entity/map/map.tscn")
+
 
 static func instance() -> Map:
-	return preload(PATH).instantiate()
+	return PACKED_SCENE.instantiate()

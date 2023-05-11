@@ -1,6 +1,7 @@
 class_name InputState
 extends State
 
+
 func enter() -> void:
 	super.enter()
 	
@@ -12,6 +13,7 @@ func enter() -> void:
 			emit(InputJustPressed.new(action))
 		else:
 			emit(InputJustReleased.new(action))
+
 
 func process(delta: float) -> void:
 	super.process(delta)

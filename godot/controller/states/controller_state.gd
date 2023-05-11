@@ -1,6 +1,7 @@
 class_name ControllerState
 extends State
 
+
 func enter() -> void:
 	super.enter()
 	
@@ -11,4 +12,4 @@ func enter() -> void:
 					emit(ControllerStartJustPressed.new())
 				InputActions.BACK:
 					emit(ControllerBackJustPressed.new())
-			pass)
+			)

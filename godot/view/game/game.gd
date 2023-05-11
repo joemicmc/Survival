@@ -1,4 +1,4 @@
 class_name Game
 extends View
 
-const PATH = "res://view/game/game.tscn"
+const PACKED_SCENE: PackedScene = preload("res://view/game/game.tscn")

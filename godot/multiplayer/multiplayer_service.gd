@@ -5,6 +5,7 @@ const ADDRESS := "192.168.1.200"
 
 var spawner := Spawner.new()
 
+
 func _ready() -> void:
 	add_child(spawner, true)
 	
@@ -20,18 +21,27 @@ func _ready() -> void:
 	
 	multiplayer.server_disconnected.connect(
 		func():
-			ViewService.change_root(Menu.PATH))
+			ViewService.change_view_to(Menu.PACKED_SCENE))
+
 
 func try_create_peer(is_server: bool = false) -> bool:
 	var peer = ENetMultiplayerPeer.new()
+	
 	if is_server:
 		peer.create_server(PORT)
 	else:
 		peer.create_client(ADDRESS, PORT)
+	
 	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		return false
+	
 	multiplayer.multiplayer_peer = peer
+	
 	if is_server:
 		spawner.add_map()
 		spawner.add_player(1)
+	
 	return true
+
+func is_multiplayer_connected() -> bool:
+	return multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
