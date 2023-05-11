@@ -7,6 +7,8 @@ var spawner := Spawner.new()
 
 
 func _ready() -> void:
+	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+	
 	add_child(spawner, true)
 	
 	multiplayer.peer_connected.connect(
@@ -19,29 +21,35 @@ func _ready() -> void:
 			if (multiplayer.is_server()):
 				spawner.remove_player(id))
 	
+	multiplayer.connected_to_server.connect(
+		func():
+			ViewService.change_view_to(Game.PACKED_SCENE))
+	
 	multiplayer.server_disconnected.connect(
 		func():
+			multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 			ViewService.change_view_to(Menu.PACKED_SCENE))
 
 
-func try_create_peer(is_server: bool = false) -> bool:
+func create_server() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
-	if is_server:
-		peer.create_server(PORT)
-	else:
-		peer.create_client(ADDRESS, PORT)
+	peer.create_server(PORT)
 	
-	if peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
-		return false
+	if peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED:
+		return
 	
 	multiplayer.multiplayer_peer = peer
 	
-	if is_server:
-		spawner.add_map()
-		spawner.add_player(1)
+	spawner.add_map()
+	spawner.add_player(1)
 	
-	return true
+	ViewService.change_view_to(Game.PACKED_SCENE)
 
-func is_multiplayer_connected() -> bool:
-	return multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTED
+
+func create_client() -> void:
+	var peer = ENetMultiplayerPeer.new()
+	
+	peer.create_client(ADDRESS, PORT)
+	
+	multiplayer.multiplayer_peer = peer

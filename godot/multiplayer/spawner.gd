@@ -17,6 +17,12 @@ func add_player(id: int) -> void:
 	add_child(Player.instance(id), true)
 
 
+func remove_map() -> void:
+	if not has_node("Map"):
+		return
+	get_node("Map").queue_free()
+
+
 func remove_player(id: int) -> void:
 	if not has_node(str(id)):
 		return

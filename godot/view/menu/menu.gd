@@ -13,13 +13,11 @@ func _ready() -> void:
 	
 	host.pressed.connect(
 		func():
-			if MultiplayerService.try_create_peer(true):
-				ViewService.change_view_to(Game.PACKED_SCENE))
+			MultiplayerService.create_server())
 	
 	join.pressed.connect(
 		func():
-			if MultiplayerService.try_create_peer():
-				ViewService.change_view_to(Game.PACKED_SCENE))
+			MultiplayerService.create_client())
 	
 	exit.pressed.connect(
 		func():

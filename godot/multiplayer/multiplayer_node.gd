@@ -12,16 +12,3 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
-
-
-func set_auth(id: int) -> void:
-	set_multiplayer_authority(id)
-
-
-func is_auth() -> bool:
-	if not MultiplayerService.is_multiplayer_connected():
-		return false;
-	if is_multiplayer_authority():
-		return true
-	else:
-		return false

@@ -26,7 +26,7 @@ static func instance(id: int) -> Player:
 
 func _enter_tree() -> void:
 	super._enter_tree()
-	set_auth(name.to_int())
+	set_multiplayer_authority(name.to_int())
 
 
 func _ready() -> void:
@@ -39,7 +39,7 @@ func _ready() -> void:
 	sprite.self_modulate = colour
 	target_pos = sprite.position
 	
-	if is_auth():
+	if is_multiplayer_authority():
 		camera.make_current()
 		label.text = name
 
@@ -47,7 +47,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
-	if is_auth():
+	if is_multiplayer_authority():
 		if direction:
 			target_pos += direction * SPEED
 	

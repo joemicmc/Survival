@@ -3,4 +3,4 @@ extends MultiplayerNode
 
 
 func _enter_tree() -> void:
-	set_auth(1)
+	set_multiplayer_authority(1)
