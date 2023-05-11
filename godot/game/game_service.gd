@@ -1,14 +1,13 @@
-extends Node
-
-var is_focused := true
-
+extends EventNode
 
 func _notification(what: int) -> void:
+	super._notification(what)
+	
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
-			is_focused = false
+			emit(GameFocusChanged.new(false))
 		NOTIFICATION_APPLICATION_FOCUS_IN:
-			is_focused = true
+			emit(GameFocusChanged.new(true))
 
 
 func quit() -> void:
