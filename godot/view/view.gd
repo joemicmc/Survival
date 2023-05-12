@@ -15,6 +15,11 @@ func _ready() -> void:
 				child.theme = THEME
 
 
+func _notification(what: int) -> void:
+	if (what == NOTIFICATION_PREDELETE):
+		EventService.disconnect_all(self)
+
+
 func enter() -> void:
 	pass
 
