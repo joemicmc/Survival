@@ -15,14 +15,6 @@ func push_root(view: View) -> void:
 	push_view(view)
 
 
-func push_modal(modal: Modal) -> void:
-	push_view(modal)
-
-
-func pop_modal() -> void:
-	pop_view()
-
-
 func push_view(view: View) -> void:
 	if stack.size():
 		stack.front().exit()

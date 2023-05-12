@@ -18,7 +18,7 @@ func create_server() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
 	if not peer.create_server(PORT) == OK:
-		ViewService.push_modal(Modal.instance("Failed to create server."))
+		ViewService.push_view(Modal.instance("Failed to create server."))
 		return
 	
 	multiplayer.multiplayer_peer = peer
@@ -34,7 +34,7 @@ func create_client() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	
 	if not peer.create_client(ADDRESS, PORT) == OK:
-		ViewService.push_modal(Modal.instance("Failed to create client."))
+		ViewService.push_view(Modal.instance("Failed to create client."))
 		return
 	
 	multiplayer.multiplayer_peer = peer
@@ -55,10 +55,10 @@ func on_connected_to_server() -> void:
 
 
 func on_connection_failed() -> void:
-	ViewService.push_modal(Modal.instance("Failed to connect."))
+	ViewService.push_view(Modal.instance("Failed to connect."))
 
 
 func on_server_disconnected() -> void:
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	ViewService.push_root(Menu.instance())
-	ViewService.push_modal(Modal.instance("Disconnected from server."))
+	ViewService.push_view(Modal.instance("Disconnected from server."))

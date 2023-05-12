@@ -22,9 +22,9 @@ func _ready() -> void:
 
 func enter() -> void:
 	super.enter()
-	ok.pressed.connect(ViewService.pop_modal)
+	ok.pressed.connect(ViewService.pop_view)
 	ok.grab_focus()
 
 
 func exit() -> void:
-	ok.pressed.disconnect(ViewService.pop_modal)
+	ok.pressed.disconnect(ViewService.pop_view)

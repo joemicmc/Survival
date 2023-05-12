@@ -8,4 +8,12 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	change_state(ControllerPlay.new(self))
+	get_signal(ViewChanged).connect(on_view_changed)
+	
+	change_state(ControllerMenu.new(self))
+
+func on_view_changed(view_changed: ViewChanged) -> void:
+	if view_changed.view is Game:
+		change_state(ControllerPlay.new(self))
+	else:
+		change_state(ControllerMenu.new(self))

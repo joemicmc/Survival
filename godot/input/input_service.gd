@@ -10,6 +10,7 @@ func _ready() -> void:
 	super._ready()
 	get_signal(GameFocusChanged).connect(on_game_focus_changed)
 	get_signal(StateChanged).connect(on_state_changed)
+	
 	change_state(InputDefault.new(self))
 
 
