@@ -16,9 +16,8 @@ func _ready() -> void:
 
 func create_server() -> void:
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(PORT)
 	
-	if peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED:
+	if not peer.create_server(PORT) == OK:
 		ViewService.push_modal(Modal.instance("Failed to create server."))
 		return
 	
@@ -33,7 +32,11 @@ func create_server() -> void:
 
 func create_client() -> void:
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client(ADDRESS, PORT)
+	
+	if not peer.create_client(ADDRESS, PORT) == OK:
+		ViewService.push_modal(Modal.instance("Failed to create client."))
+		return
+	
 	multiplayer.multiplayer_peer = peer
 
 
