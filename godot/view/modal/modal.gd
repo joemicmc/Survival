@@ -22,9 +22,8 @@ func _ready() -> void:
 
 func enter() -> void:
 	super.enter()
-	ok.pressed.connect(ViewService.pop_view)
+	register_signal(ok.pressed).connect(on_ok_pressed)
 	ok.grab_focus()
 
-
-func exit() -> void:
-	ok.pressed.disconnect(ViewService.pop_view)
+func on_ok_pressed() -> void:
+	ViewService.pop_view()

@@ -8,8 +8,18 @@ func get_signal(event: GDScript) -> Signal:
 	return Signal(self, event_name)
 
 
+func register_signal(event: Signal) -> Signal:
+	var event_name = event.get_name()
+	if not has_user_signal(event_name):
+		add_user_signal(event_name, [{"name": event_name}])
+	return Signal(event)
+
+
 func emit(event: Event) -> void:
-	get_signal(event.get_script()).emit(event)
+	if event.has_method("_init"):
+		get_signal(event.get_script()).emit(event)
+	else:
+		get_signal(event.get_script()).emit()
 
 
 func disconnect_all(object: Object) -> void:

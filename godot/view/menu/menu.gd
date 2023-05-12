@@ -14,14 +14,19 @@ static func instance() -> Menu:
 
 func enter() -> void:
 	super.enter()
-	host.pressed.connect(MultiplayerService.create_server)
-	join.pressed.connect(MultiplayerService.create_client)
-	quit.pressed.connect(GameService.quit)
+	register_signal(host.pressed).connect(on_host_pressed)
+	register_signal(join.pressed).connect(on_join_pressed)
+	register_signal(quit.pressed).connect(on_quit_pressed)
 	host.grab_focus()
 
 
-func exit() -> void:
-	super.exit()
-	host.pressed.disconnect(MultiplayerService.create_server)
-	join.pressed.disconnect(MultiplayerService.create_client)
-	quit.pressed.disconnect(GameService.quit)
+func on_host_pressed() -> void:
+	MultiplayerService.create_server()
+
+
+func on_join_pressed() -> void:
+	MultiplayerService.create_client()
+
+
+func on_quit_pressed() -> void:
+	GameService.quit()

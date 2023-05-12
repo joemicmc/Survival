@@ -1,4 +1,4 @@
-extends Node
+extends EventNode
 
 const PORT := 4433
 const ADDRESS := "192.168.1.200"
@@ -7,11 +7,12 @@ var spawner := Spawner.new()
 
 
 func _ready() -> void:
+	super._ready()
 	add_child(spawner, true)
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-	multiplayer.connected_to_server.connect(on_connected_to_server)
-	multiplayer.connection_failed.connect(on_connection_failed)
-	multiplayer.server_disconnected.connect(on_server_disconnected)
+	register_signal(multiplayer.connected_to_server).connect(on_connected_to_server)
+	register_signal(multiplayer.connection_failed).connect(on_connection_failed)
+	register_signal(multiplayer.server_disconnected).connect(on_server_disconnected)
 
 
 func create_server() -> void:

@@ -26,3 +26,7 @@ func enter() -> void:
 
 func exit() -> void:
 	EventService.disconnect_all(self)
+
+
+func register_signal(event: Signal) -> Signal:
+	return EventService.register_signal(event)

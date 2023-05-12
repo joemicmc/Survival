@@ -34,3 +34,6 @@ func get_signal(event: GDScript) -> Signal:
 func emit(event: Event) -> void:
 	EventService.emit(event)
 
+
+func register_signal(event: Signal) -> Signal:
+	return EventService.register_signal(event)

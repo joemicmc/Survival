@@ -12,9 +12,7 @@ static func instance() -> Game:
 
 func enter() -> void:
 	super.enter()
-	quit.pressed.connect(MultiplayerService.close_connection)
+	register_signal(quit.pressed).connect(on_quit_pressed)
 
-
-func exit() -> void:
-	super.exit()
-	quit.pressed.disconnect(MultiplayerService.close_connection)
+func on_quit_pressed() -> void:
+	MultiplayerService.close_connection()
