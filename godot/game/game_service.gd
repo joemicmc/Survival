@@ -6,9 +6,9 @@ func _notification(what: int) -> void:
 	
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
-			emit(GameFocusChanged.new(false))
+			EventService.emit(GameFocusChanged.new(false))
 		NOTIFICATION_APPLICATION_FOCUS_IN:
-			emit(GameFocusChanged.new(true))
+			EventService.emit(GameFocusChanged.new(true))
 
 
 func quit() -> void:

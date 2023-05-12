@@ -7,9 +7,9 @@ func enter() -> void:
 	
 	for action in InputActions.BUTTONS:
 		if Input.is_action_pressed(action):
-			emit(InputJustPressed.new(action))
+			EventService.emit(InputJustPressed.new(action))
 		else:
-			emit(InputJustReleased.new(action))
+			EventService.emit(InputJustReleased.new(action))
 
 
 func process(delta: float) -> void:
@@ -17,11 +17,11 @@ func process(delta: float) -> void:
 	
 	for action in InputActions.BUTTONS:
 		if Input.is_action_just_pressed(action):
-			emit(InputJustPressed.new(action))
+			EventService.emit(InputJustPressed.new(action))
 		if Input.is_action_pressed(action):
-			emit(InputPressed.new(action))
+			EventService.emit(InputPressed.new(action))
 		if Input.is_action_just_released(action):
-			emit(InputJustReleased.new(action))
+			EventService.emit(InputJustReleased.new(action))
 
 	for action in InputActions.VECTORS:
 		var strength = Input.get_vector(
@@ -29,7 +29,7 @@ func process(delta: float) -> void:
 			"%s_right" % action,
 			"%s_up" % action,
 			"%s_down" % action)
-		emit(InputVectorChanged.new(action, strength))
+		EventService.emit(InputVectorChanged.new(action, strength))
 	
 	for action in InputActions.UI:
 		if Input.is_action_just_pressed(action):

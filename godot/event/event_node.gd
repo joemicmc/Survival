@@ -25,15 +25,3 @@ func _physics_process(_delta: float) -> void:
 func _notification(what: int) -> void:
 	if (what == NOTIFICATION_PREDELETE):
 		EventService.disconnect_all(self)
-
-
-func get_signal(event: GDScript) -> Signal:
-	return EventService.get_signal(event)
-
-
-func emit(event: Event) -> void:
-	EventService.emit(event)
-
-
-func register_signal(event: Signal) -> Signal:
-	return EventService.register_signal(event)

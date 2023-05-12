@@ -33,4 +33,4 @@ func change_state(state: State) -> void:
 	current_state = state
 	current_state.enter()
 	
-	emit(StateChanged.new(current_state))
+	EventService.emit(StateChanged.new(current_state))

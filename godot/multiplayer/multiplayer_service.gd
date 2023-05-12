@@ -8,11 +8,12 @@ var spawner := Spawner.new()
 
 func _ready() -> void:
 	super._ready()
+	EventService.register_signal(multiplayer.connected_to_server).connect(on_connected_to_server)
+	EventService.register_signal(multiplayer.connection_failed).connect(on_connection_failed)
+	EventService.register_signal(multiplayer.server_disconnected).connect(on_server_disconnected)
+	
 	add_child(spawner, true)
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
-	register_signal(multiplayer.connected_to_server).connect(on_connected_to_server)
-	register_signal(multiplayer.connection_failed).connect(on_connection_failed)
-	register_signal(multiplayer.server_disconnected).connect(on_server_disconnected)
 
 
 func create_server() -> void:
@@ -43,10 +44,10 @@ func create_client() -> void:
 
 func close_connection() -> void:
 	if (multiplayer.is_server()):
-		spawner.remove_all()
 		multiplayer.peer_connected.disconnect(spawner.add_player)
 		multiplayer.peer_disconnected.disconnect(spawner.remove_player)
-		
+	
+	spawner = Spawner.new()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	ViewService.push_root(Menu.instance())
 

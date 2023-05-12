@@ -31,7 +31,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	super._ready()
-	get_signal(ControllerMoveChanged).connect(on_controller_move_changed)
+	EventService.get_signal(ControllerMoveChanged).connect(on_controller_move_changed)
 	
 	sprite.self_modulate = colour
 	target_pos = sprite.position

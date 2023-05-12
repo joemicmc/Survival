@@ -8,8 +8,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	get_signal(GameFocusChanged).connect(on_game_focus_changed)
-	get_signal(StateChanged).connect(on_state_changed)
+	EventService.get_signal(GameFocusChanged).connect(on_game_focus_changed)
+	EventService.get_signal(StateChanged).connect(on_state_changed)
 	
 	change_state(InputDefault.new(self))
 

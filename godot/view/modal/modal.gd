@@ -22,7 +22,8 @@ func _ready() -> void:
 
 func enter() -> void:
 	super.enter()
-	register_signal(ok.pressed).connect(on_ok_pressed)
+	EventService.register_signal(ok.pressed).connect(on_ok_pressed)
+	
 	ok.grab_focus()
 
 func on_ok_pressed() -> void:

@@ -8,7 +8,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	super._ready()
-	get_signal(ViewChanged).connect(on_view_changed)
+	EventService.get_signal(ViewChanged).connect(on_view_changed)
 	
 	change_state(ControllerMenu.new(self))
 

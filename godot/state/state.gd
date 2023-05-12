@@ -25,13 +25,5 @@ func process(_delta: float) -> void:
 	pass
 
 
-func get_signal(event: GDScript) -> Signal:
-	return EventService.get_signal(event)
-
-
-func emit(event: Event) -> void:
-	EventService.emit(event)
-
-
 func exit() -> void:
 	EventService.disconnect_all(self)

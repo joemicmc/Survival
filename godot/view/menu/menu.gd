@@ -14,9 +14,10 @@ static func instance() -> Menu:
 
 func enter() -> void:
 	super.enter()
-	register_signal(host.pressed).connect(on_host_pressed)
-	register_signal(join.pressed).connect(on_join_pressed)
-	register_signal(quit.pressed).connect(on_quit_pressed)
+	EventService.register_signal(host.pressed).connect(on_host_pressed)
+	EventService.register_signal(join.pressed).connect(on_join_pressed)
+	EventService.register_signal(quit.pressed).connect(on_quit_pressed)
+	
 	host.grab_focus()
 
 

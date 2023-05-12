@@ -22,7 +22,7 @@ func push_view(view: View) -> void:
 	stack.push_front(view)
 	stack.front().enter()
 	
-	emit(ViewChanged.new(stack.front()))
+	EventService.emit(ViewChanged.new(stack.front()))
 
 
 func pop_view() -> void:
@@ -35,4 +35,4 @@ func pop_view() -> void:
 		return
 	stack.front().enter()
 	
-	emit(ViewChanged.new(stack.front()))
+	EventService.emit(ViewChanged.new(stack.front()))
