@@ -58,3 +58,4 @@ func on_connection_failed() -> void:
 func on_server_disconnected() -> void:
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	ViewService.push_root(Menu.instance())
+	ViewService.push_modal(Modal.instance("Disconnected from server."))
