@@ -1,5 +1,5 @@
 class_name Player
-extends MultiplayerNode
+extends EventNode
 
 const PACKED_SCENE = preload("res://entity/player/player.tscn")
 const SPEED := 10.0
@@ -31,10 +31,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	super._ready()
-	
-	get_signal(ControllerMoveChanged).connect(
-		func(x: ControllerMoveChanged):
-			direction = x.strength)
+	get_signal(ControllerMoveChanged).connect(on_controller_move_changed)
 	
 	sprite.self_modulate = colour
 	target_pos = sprite.position
@@ -53,3 +50,7 @@ func _process(delta: float) -> void:
 	
 	sprite.position = sprite.position.lerp(target_pos, 0.75 * delta)
 	direction = Vector2.ZERO
+
+
+func on_controller_move_changed(controller_move_changed: ControllerMoveChanged) -> void:
+	direction = controller_move_changed.strength

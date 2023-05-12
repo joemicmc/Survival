@@ -1,5 +1,12 @@
-[gd_resource type="Theme" format=3 uid="uid://cx8xckl7cwbxg"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cx8xckl7cwbxg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmttt"]
 
 [resource]
 Button/font_sizes/font_size = 30
 Label/font_sizes/font_size = 30
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_bmttt")

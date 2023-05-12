@@ -13,3 +13,11 @@ func _ready() -> void:
 		func(x: Node):
 			return x is Control):
 				child.theme = THEME
+
+
+func enter() -> void:
+	pass
+
+
+func exit() -> void:
+	EventService.disconnect_all(self)

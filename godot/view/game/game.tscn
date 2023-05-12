@@ -5,12 +5,20 @@
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("1_cuxui")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 49.0
-offset_right = 95.0
+[node name="Title" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 text = "Game"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quit" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Quit"

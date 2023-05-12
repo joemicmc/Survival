@@ -1,5 +1,5 @@
 class_name Map
-extends MultiplayerNode
+extends Node
 
 const PACKED_SCENE: PackedScene = preload("res://entity/map/map.tscn")
 
