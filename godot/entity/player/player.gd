@@ -4,9 +4,9 @@ extends EventNode
 const PACKED_SCENE = preload("res://entity/player/player.tscn")
 const SPEED := 10.0
 
-@export var on_ready: Callable
 @export var target_pos := Vector2.ZERO
 
+var on_ready: Callable
 var direction := Vector2.ZERO
 
 @onready var sprite: Sprite2D = %Sprite2D
