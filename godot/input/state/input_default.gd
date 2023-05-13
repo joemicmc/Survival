@@ -2,16 +2,6 @@ class_name InputDefault
 extends InputState
 
 
-func enter() -> void:
-	super.enter()
-	
-	for action in InputActions.BUTTONS:
-		if Input.is_action_pressed(action):
-			EventService.emit(InputJustPressed.new(action))
-		else:
-			EventService.emit(InputJustReleased.new(action))
-
-
 func process(delta: float) -> void:
 	super.process(delta)
 	

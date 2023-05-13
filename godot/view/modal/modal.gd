@@ -3,21 +3,22 @@ extends View
 
 const PACKED_SCENE: PackedScene = preload("res://view/modal/modal.tscn")
 
-var text: String
+var on_ready: Callable
 
 @onready var message: Label = %Message
 @onready var ok: Button = %OK
 
 
-static func instance(_text: String) -> Modal:
+static func instance(text: String) -> Modal:
 	var modal = PACKED_SCENE.instantiate()
-	modal.text = _text
+	modal.on_ready = func():
+		modal.message.text = text
 	return modal
 
 
 func _ready() -> void:
 	super._ready()
-	message.text = text
+	on_ready.call()
 
 
 func enter() -> void:

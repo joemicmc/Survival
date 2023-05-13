@@ -14,5 +14,6 @@ func enter() -> void:
 	super.enter()
 	EventService.register_signal(quit.pressed).connect(on_quit_pressed)
 
+
 func on_quit_pressed() -> void:
 	MultiplayerService.close_connection()

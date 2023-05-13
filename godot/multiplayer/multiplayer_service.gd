@@ -43,11 +43,11 @@ func create_client() -> void:
 
 
 func close_connection() -> void:
-	if (multiplayer.is_server()):
+	if multiplayer.is_server():
+		spawner.remove_all()
 		multiplayer.peer_connected.disconnect(spawner.add_player)
 		multiplayer.peer_disconnected.disconnect(spawner.remove_player)
 	
-	spawner = Spawner.new()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	ViewService.push_root(Menu.instance())
 
