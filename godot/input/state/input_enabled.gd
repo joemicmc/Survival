@@ -1,4 +1,4 @@
-class_name InputDefault
+class_name InputEnabled
 extends InputState
 
 
@@ -7,11 +7,12 @@ func process(delta: float) -> void:
 	
 	for action in InputActions.BUTTONS:
 		if Input.is_action_just_pressed(action):
-			EventService.emit(InputJustPressed.new(action))
-		if Input.is_action_pressed(action):
 			EventService.emit(InputPressed.new(action))
+		if Input.is_action_pressed(action):
+			var strength = Input.get_action_strength(action)
+			EventService.emit(InputChanged.new(action, strength))
 		if Input.is_action_just_released(action):
-			EventService.emit(InputJustReleased.new(action))
+			EventService.emit(InputReleased.new(action))
 
 	for action in InputActions.VECTORS:
 		var strength = Input.get_vector(

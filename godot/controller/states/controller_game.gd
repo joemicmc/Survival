@@ -1,4 +1,4 @@
-class_name ControllerPlay
+class_name ControllerGame
 extends ControllerState
 
 
@@ -10,4 +10,4 @@ func enter() -> void:
 func on_input_vector_changed(input_vector_changed: InputVectorChanged) -> void:
 	match input_vector_changed.action:
 		InputActions.LEFT_STICK:
-			EventService.emit(ControllerMoveChanged.new(input_vector_changed.strength))
+			EventService.emit(MoveChanged.new(input_vector_changed.strength))

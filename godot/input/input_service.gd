@@ -11,14 +11,14 @@ func _ready() -> void:
 	EventService.get_signal(GameFocusChanged).connect(on_game_focus_changed)
 	EventService.get_signal(StateChanged).connect(on_state_changed)
 	
-	change_state(InputDefault.new(self))
+	change_state(InputEnabled.new(self))
 
 
 func on_game_focus_changed(game_focus_changed: GameFocusChanged) -> void:
 	if game_focus_changed.is_focused:
-		change_state(InputDefault.new(self))
+		change_state(InputEnabled.new(self))
 	else:
-		change_state(InputSleep.new(self))
+		change_state(InputDisabled.new(self))
 
 
 func on_state_changed(state_changed: StateChanged) -> void:

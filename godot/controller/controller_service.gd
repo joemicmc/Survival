@@ -15,6 +15,6 @@ func _ready() -> void:
 
 func on_view_changed(view_changed: ViewChanged) -> void:
 	if view_changed.view is Game:
-		change_state(ControllerPlay.new(self))
+		change_state(ControllerGame.new(self))
 	else:
 		change_state(ControllerMenu.new(self))
