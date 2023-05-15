@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnhvbc0cr7mpt"]
+
+[ext_resource type="Script" path="res://view/game/game_pause.gd" id="1_t6c30"]
+
+[node name="GamePaused" type="CanvasLayer"]
+script = ExtResource("1_t6c30")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -48.0
+offset_right = 100.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/PanelContainer"]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="ColorRect/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ColorRect/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="ColorRect/PanelContainer/MarginContainer/Options"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="ColorRect/PanelContainer/MarginContainer/Options"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"

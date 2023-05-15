@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://cx8xckl7cwbxg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmttt"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
 
 [resource]
 Button/font_sizes/font_size = 30

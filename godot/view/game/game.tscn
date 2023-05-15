@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2icv0ncf3o0b"]
 
-[ext_resource type="Script" path="res://view/game/game.gd" id="1_cuxui"]
+[ext_resource type="Script" path="res://view/game/game.gd" id="1_gu5la"]
 
 [node name="Game" type="CanvasLayer"]
-script = ExtResource("1_cuxui")
+script = ExtResource("1_gu5la")
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10
@@ -12,13 +12,3 @@ offset_bottom = 26.0
 grow_horizontal = 2
 text = "Game"
 horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Quit" type="Button" parent="MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Quit"
