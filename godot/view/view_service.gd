@@ -5,7 +5,7 @@ var stack: Array[View] = []
 
 func _ready() -> void:
 	super._ready()
-	push_root(Menu.instance())
+	push_root(MainView.instance())
 
 
 func push_root(view: View) -> void:

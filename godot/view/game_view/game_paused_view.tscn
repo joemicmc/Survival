@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnhvbc0cr7mpt"]
+[gd_scene load_steps=2 format=3 uid="uid://rrvqadoleliu"]
 
-[ext_resource type="Script" path="res://view/game/game_pause.gd" id="1_t6c30"]
+[ext_resource type="Script" path="res://view/game_view/game_paused_view.gd" id="1_xokix"]
 
-[node name="GamePaused" type="CanvasLayer"]
-script = ExtResource("1_t6c30")
+[node name="GamePausedView" type="CanvasLayer"]
+script = ExtResource("1_xokix")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

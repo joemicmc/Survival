@@ -10,6 +10,6 @@ func enter() -> void:
 func on_input_pressed(input_pressed: InputPressed) -> void:
 	match input_pressed.action:
 		InputActions.START:
-			EventService.emit(StartPressed.new())
+			EventService.emit(ControllerStartPressed.new())
 		InputActions.BACK:
-			EventService.emit(BackPressed.new())
+			EventService.emit(ControllerBackPressed.new())

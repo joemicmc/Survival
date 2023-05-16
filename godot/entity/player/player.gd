@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	super._ready()
-	EventService.get_signal(MoveChanged).connect(on_move_changed)
+	EventService.get_signal(ControllerMoveChanged).connect(on_controller_move_changed)
 	
 	if multiplayer.is_server():
 		on_ready.call()
@@ -54,5 +54,5 @@ func _process(delta: float) -> void:
 	direction = Vector2.ZERO
 
 
-func on_move_changed(move_changed: MoveChanged) -> void:
-	direction = move_changed.strength
+func on_controller_move_changed(controller_move_changed: ControllerMoveChanged) -> void:
+	direction = controller_move_changed.strength

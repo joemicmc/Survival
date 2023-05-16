@@ -1,21 +1,19 @@
-class_name GamePause
-extends View
+class_name GamePausedView
+extends PauseView
 
-const PACKED_SCENE: PackedScene = preload("res://view/game/game_pause.tscn")
+const PACKED_SCENE: PackedScene = preload("res://view/game_view/game_paused_view.tscn")
 
 @onready var resume: Button = %Resume
 @onready var quit: Button = %Quit
 
 
-static func instance() -> GamePause:
+static func instance() -> GamePausedView:
 	return PACKED_SCENE.instantiate()
 
 
 func enter() -> void:
 	super.enter()
 	EventService.register_signal(resume.pressed).connect(on_resume_pressed)
-	EventService.get_signal(StartPressed).connect(on_resume_pressed)
-	EventService.get_signal(CancelPressed).connect(on_resume_pressed)
 	EventService.register_signal(quit.pressed).connect(on_quit_pressed)
 	
 	resume.grab_focus()

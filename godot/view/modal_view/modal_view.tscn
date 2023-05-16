@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckyxfu3yeymd3"]
+[gd_scene load_steps=2 format=3 uid="uid://bbuiu44eq4cqg"]
 
-[ext_resource type="Script" path="res://view/modal/modal.gd" id="1_5r5tt"]
+[ext_resource type="Script" path="res://view/modal_view/modal_view.gd" id="1_fljv5"]
 
-[node name="Modal" type="CanvasLayer"]
-script = ExtResource("1_5r5tt")
+[node name="ModalView" type="CanvasLayer"]
+script = ExtResource("1_fljv5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

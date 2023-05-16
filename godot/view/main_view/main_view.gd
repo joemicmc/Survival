@@ -1,14 +1,14 @@
-class_name Menu
+class_name MainView
 extends View
 
-const PACKED_SCENE: PackedScene = preload("res://view/menu/menu.tscn")
+const PACKED_SCENE: PackedScene = preload("res://view/main_view/main_view.tscn")
 
 @onready var host: Button = %Host
 @onready var join: Button = %Join
 @onready var quit: Button = %Quit
 
 
-static func instance() -> Menu:
+static func instance() -> MainView:
 	return PACKED_SCENE.instantiate()
 
 

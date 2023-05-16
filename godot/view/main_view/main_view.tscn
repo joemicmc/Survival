@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmo6d4hgp7xy6"]
+[gd_scene load_steps=2 format=3 uid="uid://cl21qfu6ujk5v"]
 
-[ext_resource type="Script" path="res://view/menu/menu.gd" id="1_af6jq"]
+[ext_resource type="Script" path="res://view/main_view/main_view.gd" id="1_bwoua"]
 
-[node name="Menu" type="CanvasLayer"]
-script = ExtResource("1_af6jq")
+[node name="MainView" type="CanvasLayer"]
+script = ExtResource("1_bwoua")
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 10
