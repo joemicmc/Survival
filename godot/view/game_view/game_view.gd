@@ -1,10 +1,10 @@
-class_name Game
+class_name GameView
 extends View
 
 const PACKED_SCENE: PackedScene = preload("res://view/game_view/game_view.tscn")
 
 
-static func instance() -> Game:
+static func instance() -> GameView:
 	return PACKED_SCENE.instantiate()
 
 

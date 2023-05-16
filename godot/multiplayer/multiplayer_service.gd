@@ -29,7 +29,7 @@ func create_server() -> void:
 	
 	spawner.add_map()
 	spawner.add_player(1)
-	ViewService.push_root(Game.instance())
+	ViewService.push_root(GameView.instance())
 
 
 func create_client() -> void:
@@ -53,7 +53,7 @@ func close_connection() -> void:
 
 
 func on_connected_to_server() -> void:
-	ViewService.push_root(Game.instance())
+	ViewService.push_root(GameView.instance())
 
 
 func on_connection_failed() -> void:
