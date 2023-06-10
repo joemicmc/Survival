@@ -2,16 +2,28 @@ class_name Player
 extends EventNode
 
 const PACKED_SCENE = preload("res://entity/player/player.tscn")
-const SPEED := 10.0
+const SPEED :=100.0
+
+enum Facing {
+	LEFT,
+	RIGHT,
+}
+
+enum State {
+	IDLE,
+	MOVE,
+}
 
 @export var target_pos := Vector2.ZERO
+@export var state := State.IDLE
+@export var facing := Facing.RIGHT
 
 var on_ready: Callable
 var direction := Vector2.ZERO
 
-@onready var sprite: Sprite2D = %Sprite2D
+@onready var body: CharacterBody2D = %CharacterBody2D
+@onready var sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var camera: Camera2D = %Camera2D
-@onready var label: Label = %Label
 
 
 static func instance(id: int) -> Player:
@@ -23,7 +35,6 @@ static func instance(id: int) -> Player:
 			randf_range(0.25, 1),
 			randf_range(0.25, 1))
 		player.target_pos = player.sprite.position
-		player.label.text = player.name
 	return player
 
 
@@ -41,6 +52,8 @@ func _ready() -> void:
 	
 	if is_multiplayer_authority():
 		camera.make_current()
+		
+	sprite.play()
 
 
 func _process(delta: float) -> void:
@@ -48,9 +61,32 @@ func _process(delta: float) -> void:
 	
 	if is_multiplayer_authority():
 		if direction:
-			target_pos += direction * SPEED
+			state = State.MOVE
+			if direction.x > 0:
+				facing = Facing.RIGHT
+			elif direction.x < 0:
+				facing = Facing.LEFT
+			body.velocity = direction * SPEED
+			body.move_and_slide()
+			target_pos = body.position
+		else:
+			state = State.IDLE
+	else:
+		body.position = target_pos
 	
-	sprite.position = sprite.position.lerp(target_pos, 0.75 * delta)
+	match state:
+		State.MOVE:
+			sprite.animation = "move"
+		State.IDLE:
+			sprite.animation = "idle"
+	
+	match facing:
+		Facing.LEFT:
+			sprite.flip_h = true
+		Facing.RIGHT:
+			sprite.flip_h = false
+	
+	sprite.position = sprite.position.lerp(target_pos, 0.5)
 	direction = Vector2.ZERO
 
 

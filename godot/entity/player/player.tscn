@@ -1,27 +1,84 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciha4nii5uqha"]
+[gd_scene load_steps=12 format=3 uid="uid://ciha4nii5uqha"]
 
 [ext_resource type="Script" path="res://entity/player/player.gd" id="1_ccgdw"]
-[ext_resource type="Texture2D" uid="uid://bol3njkjydtce" path="res://icon.svg" id="2_lv7je"]
 [ext_resource type="Script" path="res://entity/server_sync.gd" id="2_t1q7h"]
+[ext_resource type="Texture2D" uid="uid://qffyfm2wo3s5" path="res://entity/player/player.png" id="3_4m78u"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yrppb"]
-properties/0/path = NodePath("Sprite2D:position")
+properties/0/path = NodePath(".:target_pos")
 properties/0/spawn = true
 properties/0/sync = false
-properties/1/path = NodePath("Sprite2D:self_modulate")
+properties/1/path = NodePath("CharacterBody2D:position")
 properties/1/spawn = true
 properties/1/sync = false
-properties/2/path = NodePath("Sprite2D/Camera2D/Label:text")
+properties/2/path = NodePath("AnimatedSprite2D:position")
 properties/2/spawn = true
 properties/2/sync = false
-properties/3/path = NodePath(".:target_pos")
+properties/3/path = NodePath("AnimatedSprite2D:self_modulate")
 properties/3/spawn = true
 properties/3/sync = false
+properties/4/path = NodePath(".:state")
+properties/4/spawn = true
+properties/4/sync = false
+properties/5/path = NodePath(".:facing")
+properties/5/spawn = true
+properties/5/sync = false
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hqunn"]
 properties/0/path = NodePath(".:target_pos")
 properties/0/spawn = false
 properties/0/sync = true
+properties/1/path = NodePath(".:state")
+properties/1/spawn = false
+properties/1/sync = true
+properties/2/path = NodePath(".:facing")
+properties/2/spawn = false
+properties/2/sync = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hj6j2"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m8ti"]
+atlas = ExtResource("3_4m78u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7mgv"]
+atlas = ExtResource("3_4m78u")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8e50"]
+atlas = ExtResource("3_4m78u")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2rnd"]
+atlas = ExtResource("3_4m78u")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgjpu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m8ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7mgv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8e50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2rnd")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
 
 [node name="Player" type="Node"]
 script = ExtResource("1_ccgdw")
@@ -33,17 +90,21 @@ script = ExtResource("2_t1q7h")
 [node name="ClientSync" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_hqunn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
-texture = ExtResource("2_lv7je")
+collision_layer = 2
 
-[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
-unique_name_in_owner = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_hj6j2")
 
-[node name="Label" type="Label" parent="Sprite2D/Camera2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-offset_left = -50.0
-offset_top = -90.0
-offset_right = 50.0
-offset_bottom = -64.0
-horizontal_alignment = 1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mgjpu")
+animation = &"move"
+frame_progress = 0.988235
+
+[node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D"]
+unique_name_in_owner = true
+zoom = Vector2(6, 6)

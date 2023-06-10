@@ -4,11 +4,3 @@
 
 [node name="GameView" type="CanvasLayer"]
 script = ExtResource("1_cte1p")
-
-[node name="Title" type="Label" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Game"
-horizontal_alignment = 1
