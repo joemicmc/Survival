@@ -1,5 +1,5 @@
 #!/bin/sh
 
-godot_v4.0.2-stable_win64_console.exe --path godot --export-debug win ../build/win/survival.exe
+godot_v4.0.3-stable_win64_console.exe --path godot --export-debug win ../build/win/survival.exe
 powershell compress-archive -force build/win build/win/survial.zip
 butler push build/win/survial.zip 8bitape/survial:win-dev --userversion-file godot/version.txt
