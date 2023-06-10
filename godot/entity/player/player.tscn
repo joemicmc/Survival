@@ -79,7 +79,10 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node2D"]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_ccgdw")
 
 [node name="ServerSync" type="MultiplayerSynchronizer" parent="."]
