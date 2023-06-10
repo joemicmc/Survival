@@ -11,7 +11,6 @@ static func instance() -> Spawner:
 
 
 func _ready() -> void:
-	spawn_limit = 4
 	spawn_node = get_node(spawn_path)
 	add_spawnable_scene(Map.PACKED_SCENE.resource_path)
 	add_spawnable_scene(Player.PACKED_SCENE.resource_path)
