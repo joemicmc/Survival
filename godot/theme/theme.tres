@@ -1,9 +1,12 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cx8xckl7cwbxg"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cx8xckl7cwbxg"]
+
+[ext_resource type="FontFile" uid="uid://ca3and7i6aw2r" path="res://theme/kenney_mini.ttf" id="1_7o8sy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmttt"]
 bg_color = Color(0.301961, 0.301961, 0.301961, 1)
 
 [resource]
+default_font = ExtResource("1_7o8sy")
 Button/font_sizes/font_size = 30
 Label/font_sizes/font_size = 30
 MarginContainer/constants/margin_bottom = 10

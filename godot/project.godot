@@ -28,6 +28,8 @@ ViewService="*res://view/view_service.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
+mouse_cursor/custom_image="res://theme/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 
 [editor]
 
