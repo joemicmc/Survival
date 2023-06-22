@@ -33,6 +33,10 @@ window/size/viewport_height=800
 
 movie_writer/movie_file="C:/Users/joe/Videos/Captures/capture.avi"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_accept={
